@@ -1,0 +1,19 @@
+db:
+  image: postgres
+web:
+  build: .
+  command: bin/rails server -e docker
+  env_file: .env
+  volumes:
+    - .:/myapp
+  ports:
+    - "3000:3000"
+  links:
+    - db
+server:
+  build: ./nginx/
+  ports:
+    - "80:80"
+    - "443:443"
+  links:
+    - web
