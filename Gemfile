@@ -46,3 +46,11 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'figaro', :github => "laserlemon/figaro"
 
 gem 'rails_12factor', group: :production
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
+  gem 'faker'
+end
+
