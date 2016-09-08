@@ -1,5 +1,6 @@
 class DeviseTokenAuthCreateUsers < ActiveRecord::Migration
   def change
+    enable_extension 'citext'
     create_table(:users) do |t|
       ## Required
       t.string :provider, :null => false, :default => "email"
@@ -35,7 +36,7 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration
 
       ## User Info
       t.string :name
-      t.string :nickname
+      t.citext :username
       t.string :image
       t.string :email
 
@@ -46,6 +47,7 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration
     end
 
     add_index :users, :email
+    add_index :users, :username,             :unique => true
     add_index :users, [:uid, :provider],     :unique => true
     add_index :users, :reset_password_token, :unique => true
     # add_index :users, :confirmation_token,   :unique => true

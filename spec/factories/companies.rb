@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :company do
-    subdomain "FactoryGirl Test"
-    name "factorygirl"
+    name "FactoryGirl Test"
+    subdomain "factorygirl"
   end
 end
