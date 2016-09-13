@@ -146,6 +146,8 @@ GEM
     pg (0.18.4)
     pkg-config (1.1.7)
     puma (3.6.0)
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
     rack (2.0.1)
     rack-cors (0.4.0)
     rack-test (0.6.3)
@@ -248,6 +250,7 @@ DEPENDENCIES
   omniauth-google-oauth2!
   pg (~> 0.18)
   puma (~> 3.0)
+  pundit
   rack-cors
   rails (~> 5.0.0, >= 5.0.0.1)
   rails-controller-testing

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160905131249) do
+ActiveRecord::Schema.define(version: 20160913141601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(version: 20160905131249) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["subdomain"], name: "index_companies_on_subdomain", unique: true, using: :btree
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.citext   "name",        null: false
+    t.jsonb    "permissions"
+    t.integer  "company_id",  null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["company_id"], name: "index_roles_on_company_id", using: :btree
+    t.index ["permissions"], name: "index_roles_on_permissions", using: :gin
   end
 
   create_table "users", force: :cascade do |t|
@@ -62,6 +72,7 @@ ActiveRecord::Schema.define(version: 20160905131249) do
     t.index ["user_id"], name: "index_users_companies_on_user_id", using: :btree
   end
 
+  add_foreign_key "roles", "companies"
   add_foreign_key "users_companies", "companies"
   add_foreign_key "users_companies", "users"
 end
