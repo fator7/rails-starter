@@ -8,5 +8,7 @@ class CreateRoles < ActiveRecord::Migration[5.0]
       t.timestamps
     end
     add_index  :roles, :permissions, using: :gin
+    # Make sure we don't have 2 `Admin` roles in the same company
+    add_index  :roles, [:name, :company_id], unique: true
   end
 end

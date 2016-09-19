@@ -41,4 +41,13 @@ RSpec.describe Company, type: :model do
     end
 
   end
+
+  context 'after create' do
+    it 'creates Admin and Guest roles' do
+      expect {
+        FactoryGirl.create(:company)
+      }.to change(Role, :count).by(2)
+    end
+  end
+
 end

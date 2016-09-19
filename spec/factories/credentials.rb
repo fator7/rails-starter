@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :credential do
-    user nil
-    role nil
-    company nil
+    company
+    user
+    role
   end
 end
