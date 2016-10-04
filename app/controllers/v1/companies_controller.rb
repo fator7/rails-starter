@@ -4,7 +4,7 @@ class V1::CompaniesController < ApplicationController
 
   # GET /companies
   def index
-    @companies = Company.all
+    @companies = current_user.companies
 
     render json: @companies
   end
@@ -43,7 +43,7 @@ class V1::CompaniesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_company
-      @company = Company.find(params[:id])
+      @company = current_user.companies.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
