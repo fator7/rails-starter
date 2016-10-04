@@ -3,4 +3,6 @@ class Role < ApplicationRecord
 
   has_many :credentials
   has_many :users, through: :credentials
+
+  default_scope { where(company_id: Company.current_id) }
 end

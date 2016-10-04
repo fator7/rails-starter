@@ -9,8 +9,9 @@ class UserCompany < ApplicationRecord
   after_create :assign_credentials
 
   def assign_credentials
-    role = Role.find(company: company, name: 'Administrator')
-    role = Role.find(company: company, name: 'Guest')
-    Credential.create(role: role, company: company, user: user)
+    admin = Role.find_by(company_id: company.id, name: 'Administrator')
+    guest = Role.find_by(company_id: company.id, name: 'Guest')
+    Credential.create(role: admin, company: company, user: user)
+    Credential.create(role: guest, company: company, user: user)
   end
 end
