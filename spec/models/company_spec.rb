@@ -44,6 +44,9 @@ RSpec.describe Company, type: :model do
 
   context 'after create' do
     it 'creates Admin and Guest roles' do
+      # if not set tenant to `nil`, rspec will count the Roles from the tenant
+      # created at the `before :all` block
+      Company.current_id = nil
       expect {
         FactoryGirl.create(:company)
       }.to change(Role, :count).by(2)
