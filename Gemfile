@@ -50,3 +50,6 @@ gem 'rails_12factor', group: :production
 
 # Version the api, see config/routes.rb
 gem 'versionist'
+
+# Authorization
+gem 'pundit'

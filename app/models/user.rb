@@ -7,4 +7,7 @@ class User < ActiveRecord::Base
 
   has_many :users_companies
   has_many :companies, through: :users_companies
+
+  has_many :credentials
+  has_many :roles, through: :credentials
 end
